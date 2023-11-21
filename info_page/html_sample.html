@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Viktor Platform Information</title>
+    <style>
+        /* Some basic styling for the cards and buttons */
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            margin: 0;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 116.7%;
+            text-align: center;
+            color: #14142B;
+        }
+        .side-panel {
+            width: 300px;
+            padding: 20px;
+            background-color: #F7F9FC;
+            font-family: 'Roboto', sans-serif;
+            display: block;
+            font-style: normal;
+        }
+        .side-panel h2 {
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 116.7%;
+            text-align: left;
+            color: #1B1D2F;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+        .side-panel p {
+            font-size: 14px;
+            margin-left: 20px;
+        }
+        .side-panel ul {
+            list-style: none;
+            padding: 0;
+        }
+        .side-panel li {
+            display: flex;
+            margin-bottom: 10px;
+            justify-content: left;
+            height: 40px;
+            line-height: 20px;
+            white-space: normal;
+            word-wrap: break-word;
+            font-size: 14px;
+        }
+        .side-panel li .profile-img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+            object-fit: cover;
+            margin-left: 20px;
+        }
+        .centered-button {
+            justify-content: center;
+        }
+        .name-email {
+            display: flex;
+            flex-direction: column;
+            font-size: 14px;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 40px;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            flex-wrap: wrap;
+        }
+        .main-content header {
+            font-weight: bold;
+            font-size: 50px;
+            line-height: 116.7%;
+            text-align: left;
+            color: #1B1D2F;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 100px;
+        }
+        .main-content sub-header {
+            font-weight: normal;
+            font-size: 24px;
+            text-align: left;
+            color: #4E4B66;
+            margin-top: 40px;
+            margin-left: 100px;
+            margin-bottom: 100px;
+        }
+        .logo {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+        }
+        .column {
+            flex: 0 0 30%; /* Set column width */
+            margin-top: 20px;
+            padding: 15px;
+            display:flex;
+            align-items: stretch;
+        }
+
+        .card {
+            display: flex;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .image-container {
+            margin-left:-20px;
+            margin-right:-20px;
+        }
+
+        .card img {            
+            width:100%;
+            height: 220px;
+            border-radius: 0px 0px 0 0;
+        }
+
+        .card-content {
+            padding: 15px;
+            background-color: #fff;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .card-content h2 {
+            margin-top: 0;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .card-button-container {
+            margin-top: 5px;
+            font-size: 12px;
+            position:absolute;
+            bottom: 30px;
+        }
+
+        .card-button {
+            width: 40%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .contained_button {
+            display: block;
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1e90ff;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+        .contained_button:hover {
+            background-color: #1564B2;
+            cursor: pointer;
+        }
+
+        .card-button:hover {
+            background-color: #1564B2;
+            cursor: pointer;
+        }
+
+        .contained_secondary_button {
+            display: block;
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1B1D2F;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+        .contained_secondary_button:hover {
+            background-color: #121420;
+            cursor: pointer;
+        }
+        .outlined_button {
+            display: block;
+            width: 70%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #1e90ff;
+            border-radius: 5px;
+            background-color: white;
+            color: #1e90ff;
+            font-family: 'Roboto', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+        }
+        .outlined_button:hover {
+            background-color: #1E90FF14;
+            cursor: pointer;
+        }
+        button_text {
+          width: 153px;
+          height: 26px;
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 26px;
+          letter-spacing: 0.46px;
+          text-transform: capitalize;
+          color: #FFFFFF;
+          flex: none;
+          order: 0;
+          flex-grow: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <header>
+                Automate the boring. Engineer the Awesome!
+            </header>
+            <sub-header>
+                Unlock the world's engineering potential.
+            </sub-header>
+            <div class="container">
+                <div class="column">
+                        <div class="card">
+                            <h2>Want to be inspired?</h2>
+                            <div class="image-container">
+                                <img src="https://cms.viktor.ai/uploads/Jacobs_Automate_Engineering_Processes_6dccb0e35f.png">
+                            </div>
+                            <div class="card-content">
+                                <p>See VIKTOR solutions in action through real use cases from industry leaders and success stories.</p>
+                            </div>
+                            <div class="card-button-container">
+                                <a href="https://www.viktor.ai/customer-cases/" target="_blank" rel="noopener noreferrer" class="card-button">Customer Cases</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="column">
+                        <div class="card">
+                            <h2>Play and explore</h2>
+                            <div class="image-container">
+                                <img src="https://www.viktor.ai/assets/images/platform-powerful-app-1.png">
+                            </div>
+                            <div class="card-content">
+                                <p>Explore, try, and share ready-to-use app templates and their accompanying source code. Discover what you can do with VIKTOR and use it as inspiration to build your own apps! </p>
+                            </div>
+                            <div class="card-button-container">
+                                <a href="https://www.viktor.ai/apps-gallery/" target="_blank" rel="noopener noreferrer" class="card-button">Apps Gallery</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="column">
+                    <div class="card">
+                        <h2>Let's start building</h2>
+                        <div class="image-container">
+                            <img src="https://www.viktor.ai/assets/illustrations/illustration-platform-step2.png">
+                        </div>
+                        <div class="card-content flexible">
+                            <p> Get in touch with one of your organization's administrators, and they will provide you with a developer's account.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Side Panel -->
+        <div class="side-panel">
+            <div class="logo-container">
+                <img src="https://docs.viktor.ai/img/viktor-logo-light.svg" alt="Company Logo" class="logo" width="60">
+            </div>
+            <h2>ADMIN INFORMATION</h2>
+            <ul>
+                
+                <li>
+                    <img src="https://media.licdn.com/dms/image/C5603AQFdKoZc74rnwA/profile-displayphoto-shrink_800_800/0/1626883365645?e=2147483647&v=beta&t=D5tXW8mAuk6ZNHEsGp7I9Jlu36n-p7u0VTLsdigqm1k" alt="Admin John Doe" class="profile-img" />
+                    <div class="name-email">
+                        <strong>John Doe</strong>
+                        <span>john.doe@company.com</span>
+                    </div>
+                </li>
+                
+                <li>
+                    <img src="https://koteksolutions.org/wp-content/uploads/2018/07/blank-profile-photo-female-01.jpg" alt="Admin Jane Doe" class="profile-img" />
+                    <div class="name-email">
+                        <strong>Jane Doe</strong>
+                        <span>jane.doe@company.com</span>
+                    </div>
+                </li>
+                
+            </ul>
+            
+            <h2>REGIONS</h2>
+            <p>Are you doing projects where the data needs to be saved in a specific region? Make sure you are working in the right one.</p>
+                
+                <div class="button-container">
+                    <a href="https://demo.viktor.ai" target="_blank" rel="noopener noreferrer" class="contained_secondary_button">Europe</a>
+                </div>
+                
+                <div class="button-container">
+                    <a href="https://demo.eu2.viktor.ai" target="_blank" rel="noopener noreferrer" class="contained_secondary_button">United Kingdom</a>
+                </div>
+                
+                <div class="button-container">
+                    <a href="https://demo.us1.viktor.ai" target="_blank" rel="noopener noreferrer" class="contained_secondary_button">USA</a>
+                </div>
+                
+                <div class="button-container">
+                    <a href="https://demo.ap1.viktor.ai" target="_blank" rel="noopener noreferrer" class="contained_secondary_button">Asia Pacific</a>
+                </div>
+                
+            
+            <h2>SUPPORT</h2>
+            <p>For more information, refer to the internal communication channel of Company, or refer to VIKTOR's community forum:</p>
+            <div class="button-container">
+                <a href="https://community.viktor.ai/" target="_blank" rel="noopener noreferrer" class="contained_button">Community Channel</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
