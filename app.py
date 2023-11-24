@@ -11,12 +11,12 @@ class Parametrization(ViktorParametrization):
 
 
 class Controller(ViktorController):
-    label = 'My Entity Type'
+    label = 'Company info'
     parametrization = Parametrization
 
-    @WebView("What's next?", duration_guess=1)
+    @WebView("Company info", duration_guess=1)
     def whats_next(self, **kwargs):
-        """Initiates the process of rendering the "What's next?" tab."""
+        """Initiates the process of rendering the Company info page."""
         html_path = Path(__file__).parent / "info_page" / "html_template.html"
         input_path = Path(__file__).parent / "info_page" / "info_input.json"
         with input_path.open() as f:
